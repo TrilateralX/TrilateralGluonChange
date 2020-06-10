@@ -12,7 +12,7 @@ import trilateral3.nodule.PenNodule;
 
 class AppGL{
     public var gl: GLContext;
-    public var program: Program;
+    public var program: GLProgram;
     public var pen: Pen;
     public var penNodule = new PenNodule();
     public var width:  Int;
