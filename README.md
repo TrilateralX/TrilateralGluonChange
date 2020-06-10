@@ -1,2 +1,2 @@
 # TrilateralGluonChange
-Theoretical Gluon haxelib base
+Data animation base EXPERIMENTAL

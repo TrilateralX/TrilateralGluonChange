@@ -1,0 +1,12 @@
+{
+    "name"         : "trilateralGluonChange",
+    "url"          : "https://github.com/TrilateralX/TrilateralGluonChange#TrilateralGluonChange",
+    "license"      : "MIT",
+    "tags"         : ["cross", "drawing","2d","WebGL","Gluon" ],
+    "description"  : "trilateralGluonChange starting point for quick Trilateral3 experiments with renderDraw",
+    "version"      : "0.0.1",
+    "releasenote"  : "See https://github.com/nanjizal/TrilateralGluonChange/blob/master/CHANGELOG.md",
+    "contributors" : ["Nanjizal"],
+    "classPath"    : "src",
+    "dependencies" : {}
+}
