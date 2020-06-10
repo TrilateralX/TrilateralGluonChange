@@ -1,6 +1,7 @@
 package trilateralGluonChange;
 
 import gluon.webgl.GLContext;
+import gluon.webgl.GLProgram;
 import kitGL.gluon.Shaders;
 import kitGL.gluon.HelpGL;
 import kitGL.gluon.BufferGL;
