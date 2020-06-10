@@ -2,7 +2,8 @@ package trilateralGluonChange;
 
 import gluon.webgl.GLContext;
 import gluon.webgl.GLProgram;
-import gluon.webgl.BufferGL;
+import gluon.webgl.GLBuffer;
+
 import kitGL.gluon.Shaders;
 import kitGL.gluon.HelpGL;
 import kitGL.gluon.BufferGL;
@@ -19,7 +20,7 @@ class AppGL{
     public var penNodule = new PenNodule();
     public var width:  Int;
     public var height: Int;
-    public var buf: BufferGL;
+    public var buf: GLBuffer;
     public
     function new( width_: Int, height_: Int ){
         width = width_;
