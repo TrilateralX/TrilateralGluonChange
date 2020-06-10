@@ -1,4 +1,4 @@
-package trilateralChange;
+package trilateralGluonChange;
 
 import gluon.webgl.GLContext;
 import kitGL.gluon.Shaders;
