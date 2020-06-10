@@ -23,14 +23,17 @@ class AppGL{
     public var buf: GLBuffer;
     public
     function new( width_: Int, height_: Int ){
+        gl = gl_;
         width = width_;
         height = height_;
-        creategl();
+        AppGL.appGL = this;
         setup();
     }
-    inline
-    function creategl( ){
-        gl = new gluon.webgl.native.GLContext();
+    static public var gl_: GLContext; 
+    static public var appGL: AppGL;
+    @:keep
+    static public function init() {
+        gl_ = new gluon.webgl.native.GLContext();
     }
     inline
     function setup(){
@@ -38,7 +41,7 @@ class AppGL{
         draw( penNodule.pen );
         buf = interleaveXYZ_RGBA( gl
                                 , program
-                                , penNodule.data
+                                , cast penNodule.data
                                 , 'vertexPosition', 'vertexColor', true );
     }
     // override this for drawing initial scene
@@ -49,12 +52,16 @@ class AppGL{
     static public function onFrame() {
         cpp.vm.Gc.run(true);
         var t_s = haxe.Timer.stamp();
-        clearAll( gl, width, height );
+        appGL.render();
+    }
+    public
+    function render(){
+        clearAll( gl_, width, height );
         renderDraw( penNodule.pen );
-        gl.bindBuffer(RenderingContext.ARRAY_BUFFER, buf );
-        gl.bufferSubData(RenderingContext.ARRAY_BUFFER, 0, cast penNodule.data );
+        gl.bindBuffer( BufferTarget.ARRAY_BUFFER, buf );
+        gl.bufferSubData( BufferTarget.ARRAY_BUFFER, 0, cast penNodule.data );
         gl.useProgram( program );
-        gl.drawArrays( RenderingContext.TRIANGLES, 0, penNodule.size );
+        gl.drawArrays( DrawMode.TRIANGLES, 0, penNodule.size );
     }
     // override this for drawing every frame or changing the data.
     public
