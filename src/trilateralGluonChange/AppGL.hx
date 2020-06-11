@@ -1,5 +1,5 @@
 package trilateralGluonChange;
-
+import glfw.GLFW.*;
 import gluon.webgl.GLContext;
 import gluon.webgl.GLProgram;
 import gluon.webgl.GLBuffer;
@@ -26,7 +26,21 @@ class AppGL{
         gl = gl_;
         width = width_;
         height = height_;
+        
+        if(glfwInit() != 0){
+            var window = glfwCreateWindow(1000, 1000, "trilateralGluonChange", null, null);
+            glfwMakeContextCurrent(window);
+
+            while (glfwWindowShouldClose(window) != GLFW_TRUE)
+            {
+                glfwPollEvents();
+                // Render here
+            }
+        }else{
+            throw 'GLFW init fail';
+        }
         AppGL.appGL = this;
+        
         setup();
     }
     static public var gl_: GLContext; 
