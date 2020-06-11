@@ -23,31 +23,26 @@ class AppGL{
     public var buf: GLBuffer;
     public
     function new( width_: Int, height_: Int ){
-        gl = gl_;
         width = width_;
         height = height_;
-        
+    }
+    inline
+    public function createWindow(){
         if(glfwInit() != 0){
             var window = glfwCreateWindow(1000, 1000, "trilateralGluonChange", null, null);
             glfwMakeContextCurrent(window);
-
-            while (glfwWindowShouldClose(window) != GLFW_TRUE)
-            {
-                glfwPollEvents();
-                // Render here
+            gl = new gluon.webgl.native.GLContext();
+            while (glfwWindowShouldClose(window) != GLFW_TRUE){
+                setup();
+                break;
+            }
+            while (glfwWindowShouldClose(window) != GLFW_TRUE){
+              render();
+              glfwPollEvents();
             }
         }else{
             throw 'GLFW init fail';
         }
-        AppGL.appGL = this;
-        
-        setup();
-    }
-    static public var gl_: GLContext; 
-    static public var appGL: AppGL;
-    @:keep
-    static public function init() {
-        gl_ = new gluon.webgl.native.GLContext();
     }
     inline
     function setup(){
@@ -57,17 +52,20 @@ class AppGL{
                                 , program
                                 , cast penNodule.data
                                 , 'vertexPosition', 'vertexColor', true );
+        trace('setup');
     }
     // override this for drawing initial scene
     public
     function draw( pen: Pen ){
     }
+    /*
     @:keep
     static public function onFrame() {
         cpp.vm.Gc.run(true);
-        var t_s = haxe.Timer.stamp();
-        appGL.render();
-    }
+        //var t_s = haxe.Timer.stamp();
+        //appGL.render();
+        trace('onFrame');
+    }*/
     public
     function render(){
         clearAll( gl_, width, height );
