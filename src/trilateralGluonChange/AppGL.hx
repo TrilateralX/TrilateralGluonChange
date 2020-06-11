@@ -68,7 +68,7 @@ class AppGL{
     }*/
     public
     function render(){
-        clearAll( gl_, width, height );
+        clearAll( gl, width, height );
         renderDraw( penNodule.pen );
         gl.bindBuffer( BufferTarget.ARRAY_BUFFER, buf );
         gl.bufferSubData( BufferTarget.ARRAY_BUFFER, 0, cast penNodule.data );
